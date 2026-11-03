@@ -1,0 +1,766 @@
+/* 1. Identidade visual DW */
+:root {
+    --cor-fundo: #101114;
+    --cor-superficie: #191C23;
+    --cor-cartao: #222630;
+    --cor-azul: #1677FF;
+    --cor-texto: #F3F5F8;
+    --cor-texto-secundario: #B7BFCC;
+    --largura-conteudo: 1100px;
+}
+
+/* Cores do modo claro */
+[data-tema="claro"] {
+    --cor-fundo: #F5F7FA;
+    --cor-superficie: #FFFFFF;
+    --cor-cartao: #FFFFFF;
+    --cor-texto: #171A21;
+    --cor-texto-secundario: #596273;
+}
+
+/* 2. Preparação geral */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.7;
+}
+
+a {
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* 3. Cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    min-height: 85px;
+    padding: 14px max(6%, calc((100% - var(--largura-conteudo)) / 2));
+    border-bottom: 1px solid #30343E;
+    background: var(--cor-superficie);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Identidade visual do cabeçalho */
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--cor-texto);
+}
+
+.marca img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+}
+html:not([data-tema="claro"]) .marca img {
+    filter: brightness(0) invert(1);
+}
+
+/* Logótipo original no modo claro */
+html[data-tema="claro"] .marca img {
+    filter: none;
+}
+
+.marca span {
+    font-family: "Cinzel", serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+h1 span {
+    color: var(--cor-azul);
+}
+
+/* 4. Menu de navegação */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+nav a {
+    position: relative;
+    padding: 8px 0;
+    color: var(--cor-texto-secundario);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    transition: color 0.25s ease;
+}
+
+nav a:link,
+nav a:visited {
+    color: var(--cor-texto-secundario) !important;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    color: var(--cor-azul);
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--cor-azul);
+    transition: width 0.2s ease;
+}
+
+nav a:hover::after,
+nav a:focus-visible::after {
+    width: 100%;
+}
+nav a:focus-visible::after {
+    width: 100%;
+}
+
+/* 5. Secções */
+main {
+    width: 100%;
+}
+
+section {
+    padding: 72px max(6%, calc((100% - var(--largura-conteudo)) / 2));
+    scroll-margin-top: 20px;
+}
+
+section h2 {
+    margin-top: 0;
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+section p {
+    max-width: 650px;
+    color: var(--cor-texto-secundario);
+}
+
+/* 6. Destaque da página inicial */
+
+
+#inicio h1 {
+    max-width: 700px;
+    font-size: clamp(2.3rem, 6vw, 4.2rem);
+    line-height: 1.12;
+    letter-spacing: -2px;
+}
+
+#inicio h1 span {
+    display: block;
+    color: var(--cor-azul);
+}
+#inicio p {
+    font-size: 1.1rem;
+}
+
+/* 7. Ligações de acção */
+section a {
+    color: var(--cor-azul);
+}
+
+#inicio > a {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 12px 22px;
+    border-radius: 8px;
+    background: var(--cor-azul);
+    color: #FFFFFF;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#inicio > a:hover,
+#inicio > a:focus-visible {
+    background: #0D63D9;
+}
+
+/* 8. Separação das secções */
+section + section {
+    border-top: 1px solid #272B34;
+}
+
+/* 9. Rodapé */
+footer {
+    padding: 28px 6%;
+    border-top: 1px solid #30343E;
+    background: var(--cor-superficie);
+    color: var(--cor-texto-secundario);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* 10. Adaptação a telemóveis */
+@media (max-width: 600px) {
+    header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 20px 5%;
+        
+    }
+
+    nav {
+        gap: 12px 16px;
+    }
+
+    section {
+        padding: 52px 5%;
+    }
+
+    #inicio {
+        min-height: 48vh;
+    }
+
+    #inicio h2 {
+        font-size: clamp(2rem, 9vw, 3rem);
+    }
+
+     /* Mostrar o botão do menu em ecrãs pequenos */
+    #botao-menu {
+        display: block;
+    }
+
+    /* Esconder a navegação até o utilizador abrir o menu */
+    #menu-principal {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* 11. Respeitar a preferência por menos movimento */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    a {
+        transition: none;
+    }
+}
+
+/* 17. Banner principal DW */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+    min-height: 600px;
+    padding: 70px max(6%, calc((100% - 1100px) / 2));
+    overflow: hidden;
+    background:
+        radial-gradient(
+            ellipse at 80% 50%,
+            rgba(22, 119, 255, 0.16),
+            transparent 55%
+        ),
+        var(--cor-fundo);
+}
+
+.hero-conteudo {
+    max-width: 600px;
+}
+
+.hero-etiqueta {
+    color: var(--cor-azul);
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.hero h2 {
+    margin: 16px 0;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    letter-spacing: -2px;
+}
+
+.hero h2 span {
+    display: block;
+    margin-top: 12px;
+    color: var(--cor-azul);
+}
+
+.hero-descricao {
+    max-width: 520px;
+    color: var(--cor-texto-secundario);
+    font-size: 1.05rem;
+}
+
+.hero-accoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.hero-accoes a {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 1px solid var(--cor-azul);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Botão principal */
+.botao-principal {
+    display: inline-block;
+    padding: 13px 24px;
+    background: var(--cor-azul);
+    color: #FFFFFF;
+    border: 1px solid var(--cor-azul);
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.botao-principal:hover {
+    background: #0D63D9;
+    border-color: #0D63D9;
+    transform: translateY(-2px);
+}
+
+/* Botão secundário */
+.botao-secundario {
+    display: inline-block;
+    padding: 13px 24px;
+    background: transparent;
+    color: var(--cor-texto);
+    border: 1px solid #3A4658;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.botao-secundario:hover {
+    background: var(--cor-cartao);
+    border-color: var(--cor-azul);
+    transform: translateY(-2px);
+}
+
+.hero-imagem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+}
+
+.hero-imagem img {
+    display: block;
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    transform: scale(1.05);
+    transform-origin: center center;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.3));
+}
+
+/* 18. Banner adaptado a tablets e telemóveis */
+@media (max-width: 800px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        min-height: auto;
+        padding: 45px 6% 0;
+    }
+
+    .hero-conteudo {
+        max-width: 650px;
+    }
+
+    .hero-imagem img {
+        max-width: 350px;
+        max-height: 420px;
+    }
+}
+
+/* 19. Acabamento do banner DW */
+
+.hero-conteudo {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-etiqueta {
+    margin-bottom: 18px;
+}
+
+.hero-descricao {
+    line-height: 1.8;
+    margin-top: 22px;
+}
+
+.hero-accoes a {
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.hero-accoes a:hover {
+    transform: translateY(-2px);
+}
+
+.hero-imagem {
+    position: relative;
+    z-index: 0;
+}
+
+/* Acessibilidade: reduzir animações quando solicitado */
+@media (prefers-reduced-motion: reduce) {
+    .hero-accoes a {
+        transition: none;
+    }
+
+    .hero-accoes a:hover {
+        transform: none;
+    }
+}
+
+/* Grelha dos cartões */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 6%;
+}
+
+.titulo-seccao {
+    grid-column: 1 / -1;
+    margin: 0 0 10px;
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--cor-texto);
+    letter-spacing: -1px;
+}
+
+/* Estilo individual de cada cartão */
+/* Cartões de conteúdo */
+.card {
+    padding: 30px;
+    background: var(--cor-cartao);
+    border: 1px solid #30343E;
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+    transition: transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+/* Efeito ao passar o rato */
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--cor-azul);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.20);
+}
+/* Títulos e textos */
+/* Títulos dos cartões */
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.4rem;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+    color: var(--cor-texto);
+    transition: color 0.25s ease;
+}
+
+/* Destaque ao passar o rato */
+.card:hover h2 {
+    color: var(--cor-azul);
+}
+/* Textos descritivos dos cartões */
+.card p {
+    margin-top: 0;
+    margin-bottom: 22px;
+    font-size: 0.96rem;
+    line-height: 1.75;
+    color: var(--cor-texto-secundario);
+    letter-spacing: 0.1px;
+}
+
+/* Links dos cartões */
+.card a {
+    display: inline-block;
+    margin-top: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--cor-azul);
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+/* Efeito ao passar o rato */
+.card a:hover {
+    color: var(--cor-texto);
+    transform: translateX(5px);
+}
+
+.card a:hover,
+.card a:focus-visible {
+    text-decoration: underline;
+}
+
+/* Tablets: dois cartões por linha */
+@media (max-width: 850px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Telemóveis: um cartão por linha */
+@media (max-width: 600px) {
+    .cards-grid {
+        grid-template-columns: 1fr;
+        padding: 28px 5%;
+    }
+
+    .card {
+        padding: 24px;
+    }
+
+    .hero-imagem img {
+        max-width: 300px;
+        max-height: 350px;
+        transform: scale(1);
+    }
+}
+
+/* Respeitar a preferência por menos movimento */
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        transition: none;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+}
+
+/* Ajustes do cabeçalho em ecrãs pequenos */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px 5%;
+    }
+
+    header h1 {
+        font-size: 1.4rem;
+    }
+
+    nav {
+        width: 100%;
+        gap: 12px 16px;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+    }
+}
+
+/* Botão para alternar o tema */
+#botao-tema {
+    padding: 9px 14px;
+    border: 1px solid #30343E;
+    border-radius: 8px;
+    background: var(--cor-cartao);
+    color: var(--cor-texto);
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease,
+                border-color 0.2s ease;
+}
+
+#botao-tema:hover {
+    border-color: var(--cor-azul);
+}
+
+#botao-tema:focus-visible {
+    outline: 2px solid var(--cor-azul);
+    outline-offset: 3px;
+}
+
+/* Botão do menu móvel */
+#botao-menu {
+    display: none;
+    padding: 8px 12px;
+    border: 1px solid #30343E;
+    border-radius: 8px;
+    background: var(--cor-cartao);
+    color: var(--cor-texto);
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+#botao-menu:focus-visible {
+    outline: 2px solid var(--cor-azul);
+    outline-offset: 3px;
+}
+
+/* Menu para telemóveis */
+@media (max-width: 600px) {
+    #botao-menu {
+        display: block !important;
+    }
+
+    #menu-principal {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .marca img {
+    width: 48px;
+    height: 48px;
+}
+
+.marca span {
+    font-size: 1.25rem;
+}
+}
+/* Botão de alternância do tema */
+#botao-tema {
+    padding: 9px 15px;
+    border: 1px solid #3A4658;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--cor-texto);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+#botao-tema:hover {
+    background: var(--cor-azul);
+    border-color: var(--cor-azul);
+    color: #FFFFFF;
+}
+
+#botao-tema:focus-visible {
+    outline: 2px solid var(--cor-azul);
+    outline-offset: 3px;
+}
+
+/* Secção de contacto */
+.contacto {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 65px 6%;
+    text-align: center;
+    background: var(--cor-superficie);
+    border: 1px solid #30343E;
+    border-radius: 16px;
+}
+
+/* Título do contacto */
+.contacto h2 {
+    max-width: 700px;
+    margin: 0 auto 20px;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.2;
+    color: var(--cor-texto);
+}
+
+/* Texto do contacto */
+.contacto p {
+    max-width: 600px;
+    margin: 0 auto 28px;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--cor-texto-secundario);
+}
+
+/* Rodapé */
+.rodape {
+    padding: 45px 6% 25px;
+    background: var(--cor-superficie);
+    border-top: 1px solid #30343E;
+    text-align: center;
+}
+
+.rodape-conteudo h3 {
+    margin: 0 0 12px;
+    font-size: 1.4rem;
+    color: var(--cor-texto);
+}
+
+.rodape-conteudo h3 span {
+    color: var(--cor-azul);
+}
+
+.rodape-conteudo p {
+    color: var(--cor-texto-secundario);
+    line-height: 1.7;
+}
+
+.rodape-direitos {
+    margin-top: 25px;
+    padding-top: 18px;
+    border-top: 1px solid #30343E;
+    font-size: 0.85rem;
+}
+
+/* Redes sociais do rodapé */
+.rodape-redes {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 22px 0;
+}
+
+.rodape-redes a {
+    color: var(--cor-azul);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.rodape-redes a:hover {
+    color: var(--cor-texto);
+}
+
+/* Organização dos botões de contacto */
+.contacto-accoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 28px;
+}
